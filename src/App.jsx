@@ -1,6 +1,9 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Outlet, useLocation, useNavigate } from "react-router-dom";
+// import CompanyRegister from "./pages";
+
 // Landing Page 
+
 // import LandingPage from "./pages/LandingPage";
 const LandingPage = lazy(() => import('./pages/LandingPage.jsx'))
 
