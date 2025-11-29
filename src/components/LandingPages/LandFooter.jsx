@@ -14,7 +14,7 @@ function LandFooter() {
     <footer className="bg-gradient-to-br from-white via-slate-100 to-gray-100 text-gray-800 py-10 mt-16 border-t border-gray-300">
       <div className="max-w-7xl mx-auto px-6">
         <center>
-        <h2>First login as super admin after have option to create a TPO ,Managment User</h2></center>
+        <h2>First login as super admin, after have option to create a TPO ,Managment User</h2></center>
         <br></br>
         <center>
           <h2>login credentials of super admin :</h2>
