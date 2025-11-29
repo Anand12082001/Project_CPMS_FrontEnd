@@ -13,6 +13,18 @@ function LandFooter() {
   return (
     <footer className="bg-gradient-to-br from-white via-slate-100 to-gray-100 text-gray-800 py-10 mt-16 border-t border-gray-300">
       <div className="max-w-7xl mx-auto px-6">
+        <center>
+        <h2>First login as super admin after have option to create a TPO ,Managment User</h2></center>
+        <br></br>
+        <center>
+          <h2>login credentials of super admin :</h2>
+        <br></br> 
+        <h3>email: super@admin.com</h3>
+        <h3>password : admin123</h3>
+        </center>
+        <br></br> 
+        
+
         {/* Admin Login Buttons */}
         <div className="flex flex-wrap justify-center items-center max-md:gap-3 md:gap-6 mb-8">
           {loginLinks.map((link, idx) => (
