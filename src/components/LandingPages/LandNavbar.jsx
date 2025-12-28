@@ -1,3 +1,91 @@
+// import React, { useEffect, useState } from 'react';
+// import Logo from '../../assets/CPMS.png';
+// import { useNavigate } from 'react-router-dom';
+// import { Button } from 'react-bootstrap';
+
+// function LandingNavbar() {
+//   const navigate = useNavigate();
+
+//   const [isScrolled, setIsScrolled] = useState(false);
+//   const [buttonSize, setButtonSize] = useState('lg');
+//   const [logoText, setLogoText] = useState('College Placement Management System');
+
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       setIsScrolled(window.scrollY > 80);
+//     };
+
+//     const handleResize = () => {
+//       const width = window.innerWidth;
+//       if (width <= 600) {
+//         setButtonSize('sm');
+//         setLogoText('CPMS');
+//       } else if (width <= 768) {
+//         setButtonSize('md');
+//         setLogoText('College Placement Management System');
+//       } else {
+//         setButtonSize('lg');
+//         setLogoText('College Placement Management System');
+//       }
+//     };
+
+//     handleResize();
+//     window.addEventListener('scroll', handleScroll);
+//     window.addEventListener('resize', handleResize);
+
+//     return () => {
+//       window.removeEventListener('scroll', handleScroll);
+//       window.removeEventListener('resize', handleResize);
+//     };
+//   }, []);
+
+//   return (
+//     <header
+//       className={`w-full z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'backdrop-blur-md bg-white/60 shadow-md sticky top-0' : ''
+//         }`}
+//     >
+//       <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center py-3 px-4">
+//         {/* Logo Section */}
+//         <div
+//           className="flex items-center max-md:gap-2 md:gap-4 cursor-pointer transition-transform hover:scale-105 duration-150"
+//           onClick={() => navigate('/')}
+//         >
+//           <img
+//             src={Logo}
+//             alt="CPMS Logo"
+//             className="rounded-xl border border-gray-300 w-16 h-16 md:w-20 md:h-20 shadow-sm"
+//           />
+//           <h1 className={`text-2xl md:text-4xl font-extrabold bg-gradient-to-r from-indigo-600 to-emerald-500 bg-clip-text text-transparent`}>
+//             {logoText}
+//           </h1>
+//         </div>
+
+//         {/* Button Section */}
+//         <div className="flex max-md:gap-1 md:gap-3 items-center">
+//           <Button
+//             variant="outline-primary"
+//             size={buttonSize}
+//             className="transition-all hover:scale-105 hover:shadow-md px-3 md:w-32"
+//             onClick={() => navigate('/student/login')}
+//           >
+//             Login
+//           </Button>
+
+//           <Button
+//             variant="success"
+//             size={buttonSize}
+//             className="transition-all hover:scale-105 hover:shadow-md px-3 md:w-32"
+//             onClick={() => navigate('/student/signup')}
+//           >
+//             Sign Up
+//           </Button>
+//         </div>
+//       </div>
+//     </header>
+//   );
+// }
+
+// export default LandingNavbar;
 import React, { useEffect, useState } from 'react';
 import Logo from '../../assets/CPMS.png';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +97,7 @@ function LandingNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [buttonSize, setButtonSize] = useState('lg');
   const [logoText, setLogoText] = useState('College Placement Management System');
+  const [openLogin, setOpenLogin] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,12 +128,22 @@ function LandingNavbar() {
     };
   }, []);
 
+  // 👇 LOGIN OPTIONS WITH INDIVIDUAL ROUTES
+  const loginOptions = [
+    { label: 'Student Login', path: '/student/login' },
+    { label: 'Super Admin Login', path: '/admin' },
+    { label: 'TPO Login', path: '/tpo/login' },
+    { label: 'Management Login', path: '/management/login' }
+  ];
+
   return (
     <header
-      className={`w-full z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'backdrop-blur-md bg-white/60 shadow-md sticky top-0' : ''
-        }`}
+      className={`w-full z-50 transition-all duration-300 ease-in-out ${
+        isScrolled ? 'backdrop-blur-md bg-white/60 shadow-md sticky top-0' : ''
+      }`}
     >
       <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center py-3 px-4">
+
         {/* Logo Section */}
         <div
           className="flex items-center max-md:gap-2 md:gap-4 cursor-pointer transition-transform hover:scale-105 duration-150"
@@ -55,32 +154,69 @@ function LandingNavbar() {
             alt="CPMS Logo"
             className="rounded-xl border border-gray-300 w-16 h-16 md:w-20 md:h-20 shadow-sm"
           />
-          <h1 className={`text-2xl md:text-4xl font-extrabold bg-gradient-to-r from-indigo-600 to-emerald-500 bg-clip-text text-transparent`}>
+          <h1 className="text-2xl md:text-4xl font-extrabold bg-gradient-to-r from-indigo-600 to-emerald-500 bg-clip-text text-transparent">
             {logoText}
           </h1>
         </div>
 
         {/* Button Section */}
-        <div className="flex max-md:gap-1 md:gap-3 items-center">
-          <Button
-            variant="outline-primary"
-            size={buttonSize}
-            className="transition-all hover:scale-105 hover:shadow-md px-3 md:w-32"
-            onClick={() => navigate('/student/login')}
-          >
-            Login
-          </Button>
+        <div className="flex max-md:gap-1 md:gap-3 items-center relative">
 
+          {/* LOGIN DROPDOWN */}
+          <div className="relative">
+            <Button
+              variant="outline-primary"
+              size={buttonSize}
+              className="transition-all hover:scale-105 hover:shadow-md px-3 md:w-32"
+              onClick={() => setOpenLogin(!openLogin)}
+            >
+              Login
+            </Button>
+
+            {openLogin && (
+              <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md border w-56 z-50">
+                {loginOptions.map((opt, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setOpenLogin(false);
+                      navigate(opt.path);
+                    }}
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-sm"
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* SIGN UP */}
           <Button
             variant="success"
             size={buttonSize}
             className="transition-all hover:scale-105 hover:shadow-md px-3 md:w-32"
             onClick={() => navigate('/student/signup')}
           >
-            Sign Up
+          Student SignUp
           </Button>
+
         </div>
+        
       </div>
+              <center>
+          <h2>First login as Super Admin. After that, you can create TPO & Management users.</h2>
+        </center>
+
+        <br />
+
+        <center>
+          <h2>Super Admin Credentials:</h2>
+          <p>email: <b>super@admin.com</b></p>
+          <p>password: <b>admin123</b></p>
+        </center>
+
+        <br />
     </header>
   );
 }
