@@ -64,7 +64,7 @@ function NotificationBox() {
     <>
       <div className="my-2 mx-2 w-full backdrop-blur-md bg-white/30 border border-white/20 rounded-lg py-2 px-3 shadow shadow-red-400">
         <div className="flex justify-between items-center">
-          <h3 className="font-semibold my-2">Notification</h3>
+          <h3 className="font-semibold my-2">Notification </h3>
         </div>
         {loading ? (
           <div className="flex justify-center items-center">
@@ -117,7 +117,7 @@ function NotificationBox() {
                   </Link>
                 ))
               ) : (
-                <div>No notices found!</div>
+                <div>No noticesfound!</div>
               )}
             </div>
           </div>

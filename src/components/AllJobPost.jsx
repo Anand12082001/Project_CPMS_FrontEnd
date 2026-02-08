@@ -11,7 +11,7 @@ import TablePlaceholder from './TablePlaceholder';
 import { BASE_URL } from '../config/backend_url';
 
 function AllJobPost() {
-  document.title = 'CPMS | Job Listings';
+  document.title = 'CPMS | Job Listings ';
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -192,7 +192,7 @@ function AllJobPost() {
                                   <OverlayTrigger
                                     placement="top"
                                     delay={{ show: 250, hide: 400 }}
-                                    overlay={<Tooltip>View Post</Tooltip>}
+                                    overlay={<Tooltip>View Post </Tooltip>}
                                   >
                                     <i
                                       className="fa-solid fa-circle-info text-2xl max-sm:text-lg cursor-pointer transition-colors duration-200 ease-in-out hover:text-blue-500"

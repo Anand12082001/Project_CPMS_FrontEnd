@@ -88,8 +88,8 @@ const StudentTable = ({ branchName, studentData }) => {
                           rel="noopener noreferrer"
                           className='no-underline text-blue-500 hover:text-blue-700'
                         >
-                          View Resume
-                        </a>
+                          View Resume  demo
+                        </a> 
                       </td>
                       <td>{student?.studentProfile?.internships?.length || 0}</td>
                       <td>{student?.studentProfile?.appliedJobs?.length || 0}</td>

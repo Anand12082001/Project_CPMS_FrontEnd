@@ -1,5 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Outlet, useLocation, useNavigate } from "react-router-dom";
+import ResumeViewer from "../src/components/ResumeViewer.jsx"
 // import CompanyRegister from "./pages";
 
 // Landing Page 
@@ -121,7 +122,10 @@ function App() {
     <>
       <BrowserRouter>
         <Suspense fallback={<LoadingComponent />}>
+        
+
           <Routes>
+            <Route path="/resume-viewer" element={<ResumeViewer />} />
             {/* Public Route  */}
             <Route index element={<LandingPage />} />
             {/* Student Login, Sign Up  */}

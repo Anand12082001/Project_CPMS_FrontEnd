@@ -132,8 +132,9 @@ function LandingNavbar() {
   const loginOptions = [
     { label: 'Student Login', path: '/student/login' },
     { label: 'Super Admin Login', path: '/admin' },
-    { label: 'TPO Login', path: '/tpo/login' },
-    { label: 'Management Login', path: '/management/login' }
+    { label: 'TPO/placement Login', path: '/tpo/login' },
+
+    // { label: 'Management Login', path: '/management/login' }
   ];
 
   return (
@@ -205,13 +206,13 @@ function LandingNavbar() {
         
       </div>
               <center>
-          <h2>First login as Super Admin. After that, you can create TPO & Management users.</h2>
+          <h3>First login as Super Admin. After that, you can create TPO .</h3>
         </center>
 
         <br />
 
         <center>
-          <h2>Super Admin Credentials:</h2>
+          <h4>Super Admin Credentials:</h4>
           <p>email: <b>super@admin.com</b></p>
           <p>password: <b>admin123</b></p>
         </center>

@@ -15,26 +15,26 @@ export const SidebarData = [
     path: "/admin/dashboard",
     icon: <AiFillHome />
   },
-  {
-    title: "Management",
-    icon: <FaUserSecret />,
-    iconClosed: <RiArrowDownSFill />,
-    iconOpened: <RiArrowUpSFill />,
-    subNav: [
-      {
-        title: "List All",
-        path: "/admin/management",
-        icon: <FaListUl />,
-        cName: "sub-nav",
-      },
-      {
-        title: "Add New",
-        path: "/admin/add-management-admin",
-        icon: <RiPlayListAddLine />,
-        cName: "sub-nav",
-      },
-    ],
-  },
+  // {
+  //   title: "Management",
+  //   icon: <FaUserSecret />,
+  //   iconClosed: <RiArrowDownSFill />,
+  //   iconOpened: <RiArrowUpSFill />,
+  //   subNav: [
+  //     {
+  //       title: "List All",
+  //       path: "/admin/management",
+  //       icon: <FaListUl />,
+  //       cName: "sub-nav",
+  //     },
+  //     {
+  //       title: "Add New",
+  //       path: "/admin/add-management-admin",
+  //       icon: <RiPlayListAddLine />,
+  //       cName: "sub-nav",
+  //     },
+  //   ],
+  // },
   {
     title: "TPO",
     icon: <GrUserWorker />,

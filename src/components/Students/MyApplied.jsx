@@ -38,24 +38,29 @@ function MyApplied() {
   }, []);
 
 
-  const fetchMyJob = async () => {
-    if (!currentUser?.id) return;
-    try {
-      const response = await axios.get(`${BASE_URL}/tpo/myjob/${currentUser?.id}`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
+const fetchMyJob = async () => {
+  if (!currentUser?.id) return;
 
-      if (response?.data)
-        setJobs(response?.data)
-      // if (response?.data?.msg)
-    } catch (error) {
-      console.log("Error While Fetching Error => ", error);
-    } finally {
-      setLoading(false)
-    }
+  setLoading(true); // ✅ move here
+
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/tpo/myjob/${currentUser.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+
+    setJobs(response?.data || []);
+  } catch (error) {
+    console.log("Error While Fetching Jobs => ", error);
+  } finally {
+    setLoading(false); // ✅ only AFTER API finishes
   }
+};
+
 
   useEffect(() => {
     fetchMyJob();
@@ -94,58 +99,61 @@ function MyApplied() {
               </tr>
             </thead>
             <tbody>
-              {jobs?.length > 0 ? (
-                jobs?.map((job, index) => (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>
-                      <b>
-                        {job?.companyName}
-                      </b>
-                    </td>
-                    <td>
-                      {job?.jobTitle}
-                    </td>
-                    <td>
-                      {job?.salary}
-                    </td>
-                    <td>
-                      {new Date(job?.appliedAt.split('T')).toLocaleDateString('en-IN')}
-                    </td>
-                    <td>
-                      {new Date(job?.applicationDeadline).toLocaleDateString('en-IN')}
-                    </td>
-                    <td>
-                      {job?.status.charAt(0).toUpperCase() + job?.status.slice(1)}
-                    </td>
-                    <td>
-                      {job?.numberOfApplicants}
-                    </td>
-                    <td>
-                      {/* for hover label effect  */}
-                      <div className="flex justify-around items-center">
-                        <div className="px-0.5">
-                          {/* view post  */}
-                          <OverlayTrigger
-                            placement="top"
-                            delay={{ show: 250, hide: 400 }}
-                            overlay={renderTooltipViewPost}
-                          >
-                            <Link className="text-black" to={`/student/job/${job.jobId}`}>
-                              <i className='fa-solid fa-circle-info text-2xl max-sm:text-lg cursor-pointer transition-colors duration-200 ease-in-out hover:text-blue-500' />
-                            </Link>
-                          </OverlayTrigger>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="9">No Jobs found</td>
-                </tr>
-              )}
-            </tbody>
+  {jobs?.length > 0 ? (
+    jobs.map((job, index) => {
+      const appliedDate = job?.appliedAt
+        ? new Date(job.appliedAt).toLocaleDateString("en-IN")
+        : "-";
+
+      const deadlineDate = job?.applicationDeadline
+        ? new Date(job.applicationDeadline).toLocaleDateString("en-IN")
+        : "-";
+
+      const statusText = job?.status
+        ? job.status.charAt(0).toUpperCase() + job.status.slice(1)
+        : "-";
+
+      return (
+        <tr key={index}>
+          <td>{index + 1}</td>
+
+          <td><b>{job?.companyName || "-"}</b></td>
+
+          <td>{job?.jobTitle || "-"}</td>
+
+          <td>{job?.salary || "-"}</td>
+
+          <td>{appliedDate}</td>
+
+          <td>{deadlineDate}</td>
+
+          <td>{statusText}</td>
+
+          <td>{job?.numberOfApplicants ?? "-"}</td>
+
+          <td>
+            <div className="flex justify-around items-center">
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={renderTooltipViewPost}
+              >
+                <Link className="text-black" to={`/student/job/${job.jobId}`}>
+                  <i className="fa-solid fa-circle-info text-2xl max-sm:text-lg cursor-pointer hover:text-blue-500" />
+                </Link>
+              </OverlayTrigger>
+            </div>
+          </td>
+        </tr>
+      );
+    })
+  ) : (
+    <tr>
+      <td colSpan="9">No Jobs found</td>
+    </tr>
+  )}
+</tbody>
+
           </Table>
         )
       }

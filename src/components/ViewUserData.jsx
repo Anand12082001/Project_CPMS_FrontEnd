@@ -301,7 +301,7 @@ function ViewUserData() {
                             <div className="my-2">
                               <Accordion flush className='flex flex-col gap-4'>
                                 <Accordion.Item eventKey={'0'} className='shadow-md'>
-                                  <Accordion.Header>Job Applied Detail</Accordion.Header>
+                                  <Accordion.Header>Job Applied  Detail</Accordion.Header>
                                   <Accordion.Body>
                                     <Table striped borderless hover sixe='sm'>
                                       <thead>

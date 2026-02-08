@@ -90,13 +90,17 @@ function AddInternship() {
   };
 
   const handleSubmit = () => {
-    if (!internship?.companyName || !internship?.internshipDuration || !internship?.startDate || !internship?.type) {
-      setToastMessage('Star Marked Required!');
-      setShowToast(true);
-      return;
-    }
-    setShowModal(true);
+  if (!internship?.companyName || !internship?.internshipDuration || !internship?.startDate || !internship?.type) {
+    setToastMessage('Star Marked Required!');
+    setShowToast(true);
+    return;
   }
+
+  // ✅ Date validation added here
+  if (!validateDates()) return;
+
+  setShowModal(true);
+};
 
   const confirmSubmit = async () => {
     try {
@@ -128,6 +132,35 @@ function AddInternship() {
     }
     setShowModal(false);
   }
+  // ✅ Proper Date Validation (string compare YYYY-MM-DD)
+const validateDates = () => {
+  const { startDate, endDate } = internship;
+
+  if (!startDate) {
+    setToastMessage("Internship start date is required!");
+    setShowToast(true);
+    return false;
+  }
+
+  const today = new Date().toISOString().split("T")[0];
+
+  // ❌ past start date
+  if (startDate < today) {
+    setToastMessage("Start date cannot be in the past!");
+    setShowToast(true);
+    return false;
+  }
+
+  // ❌ end before start
+  if (endDate && endDate < startDate) {
+    setToastMessage("End date cannot be before start date!");
+    setShowToast(true);
+    return false;
+  }
+
+  return true;
+};
+
 
 
   useEffect(() => {

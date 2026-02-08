@@ -39,12 +39,12 @@ function Home() {
         <div className="mt-10">
           <div className="  flex flex-col gap-20 justify-center items-center flex-wrap">
             <div className="  w-full px-10 flex flex-wrap justify-evenly items-center gap-4">
-              <Link className='text-black no-underline' to='../admin/management'>
+              {/* <Link className='text-black no-underline' to='../admin/management'>
                 <div className="bg-slate-300/30 shadow h-44 w-60 text-center flex flex-col justify-evenly items-center rounded-md cursor-pointer border-2 border-gray-600 transition-all ease-in-out hover:bg-slate-400/30  max-sm:h-32 max-sm:w-44">
                   <span className='text-3xl max-sm:text-2xl'>Management Admin</span>
                   <span className='text-3xl max-sm:text-2xl'>{countUsers.managementUsers}</span>
                 </div>
-              </Link>
+              </Link> */}
               <Link className='text-black no-underline' to='../admin/tpo'>
                 <div className="bg-slate-300/30 shadow h-44 w-60 text-center flex flex-col justify-evenly items-center rounded-md cursor-pointer border-2 border-gray-600 transition-all ease-in-out hover:bg-slate-400/30  max-sm:h-32 max-sm:w-44">
                   <span className='text-3xl max-sm:text-2xl'>TPO Admin</span>

@@ -26,7 +26,7 @@ function BreadcrumbExp({ header }) {
       <Breadcrumb bsPrefix='flex'>
         {/* Home link */}
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' + userIs + "/dashboard", className: "px-1 no-underline" }}>
-          Home
+          Home 
         </Breadcrumb.Item>
 
         {
